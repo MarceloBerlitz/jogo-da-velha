@@ -28,8 +28,7 @@ const fillMatrix = (i) => {
 const verifyWin = () => {
     if (verifyLines()) return true;
     if (verifyCols()) return true;
-    if (verifyDiagonals()) return true;
-    return false;
+    return verifyDiagonals();
 };
 
 const verifyLines = () => {
@@ -54,29 +53,25 @@ const verifyCols = () => {
 };
 
 const verifyDiagonals = () => {
-    if(matrix[1][1]) {
-        if(matrix[0][0] === matrix[1][1] && matrix[2][2] === matrix[1][1]) return true;
-        if(matrix[0][2] === matrix[1][1] && matrix[2][0] === matrix[1][1]) return true;
+    if(matrix[1][1] != null) {
+        if (matrix[0][0] === matrix[1][1] && matrix[2][2] === matrix[1][1]) return true;
+        return (matrix[0][2] === matrix[1][1] && matrix[2][0] === matrix[1][1]);
     } else {
         return false;
     }
-}
+};
 
 const addEventAndClear = (cell, i) => {
     const btn = document.getElementById(cell);
     btn.innerHTML = null;
-    btn.addEventListener('click', e => {
+    btn.addEventListener('click', () => {
         if(!btn.innerHTML) {
             if(!verifyWin()) {
                 btn.innerHTML = state ? x : o;
                 fillMatrix(i);
                 changeState();
-                title.innerHTML = `Vez de ${ state ? x : o }`
-                if(matrix.every(line => line.every(item => item != null))) {
-                    title.innerHTML = `Empate! <a href="#">Jogar novamente</a>`;
-                    addEventPlayAgain();
-                    gameOver = true;
-                }
+                title.innerHTML = `Vez de ${ state ? x : o }`;
+                verifyTie();
             }
             if(verifyWin()) {
                 if(!gameOver) {
@@ -89,11 +84,19 @@ const addEventAndClear = (cell, i) => {
     });
 };
 
+const verifyTie = () => {
+    if(matrix.every(line => line.every(item => item != null)) && !verifyWin()) {
+        title.innerHTML = `Empate! <a href="#">Jogar novamente</a>`;
+        addEventPlayAgain();
+        gameOver = true;
+    }
+};
+
 const addEventPlayAgain = () => {
-    document.getElementsByTagName('a').item(0).addEventListener('click', e => {
+    document.getElementsByTagName('a').item(0).addEventListener('click', () => {
         startGame();
     });
-}
+};
 
 const startGame = () => {
     gameOver = false;
