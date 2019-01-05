@@ -1,0 +1,12 @@
+{
+"short_name": "TicTacToe",
+"name": "Jogo da Velha",
+"icons": [
+{
+"src": "assets/jake.jpg",
+"type": "image/jpg",
+"sizes": "50x50"
+},
+],
+"start_url": "index.html"
+}
