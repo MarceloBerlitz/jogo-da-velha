@@ -1,6 +1,6 @@
 table {
     margin: 100px auto;
-    font-size: 72px;
+    font-size: 128px;
 }
 h1 {
     text-align: center;
@@ -9,8 +9,8 @@ h1 {
 td {
     border-color: black;
     border-style: solid;
-    height: 100px;
-    width: 100px;
+    height: 240px;
+    width: 240px;
     text-align: center;
 }
 #button-1 {
@@ -43,6 +43,8 @@ td {
 
 body {
     font-family: arial;
+    font-size: 72px;
+    background-color: lightcyan;
 }
 
 .x {
